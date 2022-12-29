@@ -3,3 +3,4 @@ config/database/test.json
 bin/air.exe
 tmp
 .air.toml
+*.exe
