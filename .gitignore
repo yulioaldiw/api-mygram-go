@@ -1,0 +1,5 @@
+config/database/test.json
+.env
+bin/air.exe
+tmp
+.air.toml
