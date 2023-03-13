@@ -2,6 +2,8 @@ package main
 
 import (
 	"log"
+	"os"
+
 	commentDelivery "api-mygram-go/comment/delivery/http"
 	commentRepository "api-mygram-go/comment/repository/postgres"
 	commentUseCase "api-mygram-go/comment/usecase"
@@ -15,14 +17,14 @@ import (
 	userDelivery "api-mygram-go/user/delivery/http"
 	userRepository "api-mygram-go/user/repository/postgres"
 	userUseCase "api-mygram-go/user/usecase"
-	"os"
 
 	_ "api-mygram-go/docs"
 
-	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
+
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 // @title MyGram API
@@ -39,9 +41,9 @@ import (
 // @securityDefinitions.apikey  Bearer
 // @in                          header
 // @name                        Authorization
-// @description					        Description for what is this security definition being used
+// @description					Description for what is this security definition being used
 func main() {
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load("../api-mygram-go/config/env/.env"); err != nil {
 		log.Fatal("Error loading .env file: ", err)
 	}
 
@@ -86,7 +88,7 @@ func main() {
 
 	routers.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load("../api-mygram-go/config/env/.env"); err != nil {
 		log.Fatal("Error loading .env file: ", err)
 	}
 

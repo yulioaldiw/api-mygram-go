@@ -27,7 +27,8 @@ type LoginUser struct {
 }
 
 type LoggedinUser struct {
-	Token string `json:"token" example:"the token generated here"`
+	Username string `json:"username" example:"johndoe"`
+	Token    string `json:"token" example:"the token generated here"`
 }
 
 type ResponseDataLoggedinUser struct {

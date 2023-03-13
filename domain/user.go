@@ -1,8 +1,8 @@
 package domain
 
 import (
-	"context"
 	"api-mygram-go/helpers"
+	"context"
 	"time"
 
 	"github.com/asaskevich/govalidator"
@@ -48,8 +48,9 @@ type UserUseCase interface {
 }
 
 type UserRepository interface {
-	Register(context.Context, *User) error
-	Login(context.Context, *User) error
+	Create(context.Context, *User) error
+	GetUserByEmail(context.Context, *User) error
+	// Login(context.Context, *User) error
 	Update(context.Context, User) (User, error)
 	Delete(context.Context, string) error
 }

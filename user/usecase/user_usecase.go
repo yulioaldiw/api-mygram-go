@@ -2,7 +2,13 @@ package usecase
 
 import (
 	"context"
+	"errors"
+	"fmt"
+
 	"api-mygram-go/domain"
+	"api-mygram-go/helpers"
+
+	gonanoid "github.com/matoous/go-nanoid/v2"
 )
 
 type userUseCase struct {
@@ -14,7 +20,10 @@ func NewUserUseCase(userRepository domain.UserRepository) *userUseCase {
 }
 
 func (userUseCase *userUseCase) Register(ctx context.Context, user *domain.User) (err error) {
-	if err = userUseCase.userRepository.Register(ctx, user); err != nil {
+	ID, _ := gonanoid.New(16)
+	user.ID = fmt.Sprintf("user-%s", ID)
+
+	if err = userUseCase.userRepository.Create(ctx, user); err != nil {
 		return err
 	}
 
@@ -22,8 +31,13 @@ func (userUseCase *userUseCase) Register(ctx context.Context, user *domain.User)
 }
 
 func (userUseCase *userUseCase) Login(ctx context.Context, user *domain.User) (err error) {
-	if err = userUseCase.userRepository.Login(ctx, user); err != nil {
+	password := user.Password
+
+	if err = userUseCase.userRepository.GetUserByEmail(ctx, user); err != nil {
 		return err
+	}
+	if isValid := helpers.Compare([]byte(user.Password), []byte(password)); !isValid {
+		return errors.New("the credential you entered are wrong")
 	}
 
 	return

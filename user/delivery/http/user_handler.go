@@ -5,6 +5,7 @@ import (
 	"api-mygram-go/helpers"
 	"api-mygram-go/user/delivery/http/middleware"
 	"api-mygram-go/user/utils"
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -30,11 +31,11 @@ func NewUserHandler(routers *gin.Engine, userUseCase domain.UserUseCase) {
 
 // Register godoc
 // @Summary			Register a user
-// @Description	create and store a user
-// @Tags				users
+// @Description		create and store a user
+// @Tags			users
 // @Accept			json
 // @Produce			json
-// @Param				json	body			utils.RegisterUser	true	"Register User"
+// @Param			json	body		utils.RegisterUser	true	"Register User"
 // @Success			201		{object}	utils.ResponseDataRegisteredUser
 // @Failure			400  	{object}	utils.ResponseMessage
 // @Failure			409  	{object}	utils.ResponseMessage
@@ -94,11 +95,11 @@ func (handler *userHandler) Register(ctx *gin.Context) {
 
 // Login godoc
 // @Summary			Login a user
-// @Description	Authentication a user and retrieve a token
-// @Tags				users
+// @Description		Authentication a user and retrieve a token
+// @Tags			users
 // @Accept			json
 // @Produce			json
-// @Param				json	body			utils.LoginUser	true	"Login User"
+// @Param			json	body		utils.LoginUser	true	"Login User"
 // @Success			200		{object}	utils.ResponseDataLoggedinUser
 // @Failure			400		{object}	utils.ResponseMessage
 // @Failure			401		{object}	utils.ResponseMessage
@@ -113,7 +114,7 @@ func (handler *userHandler) Login(ctx *gin.Context) {
 	if err = ctx.ShouldBindJSON(&user); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, helpers.ResponseMessage{
 			Status:  "fail",
-			Message: err.Error(),
+			Message: fmt.Sprint("bad payload, enter the valid payload; error: ", err.Error()),
 		})
 
 		return
@@ -146,10 +147,14 @@ func (handler *userHandler) Login(ctx *gin.Context) {
 		return
 	}
 
+	ctx.SetSameSite(http.SameSiteLaxMode)
+	ctx.SetCookie("Authorization", token, 300, "", "", false, true)
+
 	ctx.JSON(http.StatusOK, helpers.ResponseData{
 		Status: "success",
 		Data: utils.LoggedinUser{
-			Token: token,
+			Username: user.Email,
+			Token:    token,
 		},
 	})
 }

@@ -1,14 +1,11 @@
 package repository
 
 import (
+	"api-mygram-go/domain"
 	"context"
 	"errors"
-	"fmt"
-	"api-mygram-go/domain"
-	"api-mygram-go/helpers"
 	"time"
 
-	gonanoid "github.com/matoous/go-nanoid/v2"
 	"gorm.io/gorm"
 )
 
@@ -20,14 +17,9 @@ func NewUserRepository(db *gorm.DB) *userRepository {
 	return &userRepository{db}
 }
 
-func (userRepository *userRepository) Register(ctx context.Context, user *domain.User) (err error) {
+func (userRepository *userRepository) Create(ctx context.Context, user *domain.User) (err error) {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
-
 	defer cancel()
-
-	ID, _ := gonanoid.New(16)
-
-	user.ID = fmt.Sprintf("user-%s", ID)
 
 	if err = userRepository.db.WithContext(ctx).Create(&user).Error; err != nil {
 		return err
@@ -36,19 +28,12 @@ func (userRepository *userRepository) Register(ctx context.Context, user *domain
 	return
 }
 
-func (userRepository *userRepository) Login(ctx context.Context, user *domain.User) (err error) {
+func (userRepository *userRepository) GetUserByEmail(ctx context.Context, user *domain.User) (err error) {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
-
 	defer cancel()
 
-	password := user.Password
-
 	if err = userRepository.db.WithContext(ctx).Where("email = ?", user.Email).Take(&user).Error; err != nil {
-		return errors.New("the email you entered are not found")
-	}
-
-	if isValid := helpers.Compare([]byte(user.Password), []byte(password)); !isValid {
-		return errors.New("the credential you entered are wrong")
+		return errors.New("the email you entered are not registered")
 	}
 
 	return
