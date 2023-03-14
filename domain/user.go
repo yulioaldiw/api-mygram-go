@@ -18,6 +18,7 @@ type User struct {
 	ProfileImageUrl string         `json:"profileImageUrl,omitempty" example:"https://www.example.com/image.jpg"`
 	CreatedAt       *time.Time     `gorm:"not null;autoCreateTime" json:"created_at,omitempty"`
 	UpdatedAt       *time.Time     `gorm:"not null;autocreateTime" json:"updated_at,omitempty"`
+	Deleted         gorm.DeletedAt `json:"deleted_at,omitempty"`
 	Photos          *[]Photo       `json:"-"`
 	SocialMedias    *[]SocialMedia `json:"-"`
 }
@@ -54,5 +55,5 @@ type UserRepository interface {
 	GetUserByID(context.Context, *User) error
 	GetAllUsers(context.Context, *[]User) error
 	Update(context.Context, User, string) (User, error)
-	Delete(context.Context, string) error
+	SoftDelete(context.Context, string) error
 }

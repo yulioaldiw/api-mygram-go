@@ -189,7 +189,6 @@ func (handler *userHandler) GetAllUsers(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, helpers.ResponseData{
 		Status: "success",
 		Data: utils.FetchedUsers{
-			// Users: users,
 			Users: users,
 		},
 	})
@@ -256,8 +255,8 @@ func (handler *userHandler) Update(ctx *gin.Context) {
 
 // Delete godoc
 // @Summary			Delete a user
-// @Description	Delete a user with authentication user
-// @Tags				users
+// @Description		Delete a user with authentication user
+// @Tags			users
 // @Accept			json
 // @Produce			json
 // @Success			200			{object}	utils.ResponseMessageDeletedUser
@@ -279,11 +278,8 @@ func (handler *userHandler) Delete(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(
-		http.StatusOK,
-		helpers.ResponseMessage{
-			Status:  "success",
-			Message: "your account has been successfully deleted",
-		},
-	)
+	ctx.JSON(http.StatusOK, helpers.ResponseMessage{
+		Status:  "success",
+		Message: "your account has been successfully deleted",
+	})
 }

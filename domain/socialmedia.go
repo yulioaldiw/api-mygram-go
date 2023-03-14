@@ -15,7 +15,9 @@ type SocialMedia struct {
 	UserID         string     `gorm:"type:VARCHAR(50);not null" json:"user_id"`
 	CreatedAt      *time.Time `gorm:"not null;autoCreateTime" json:"created_at,omitempty"`
 	UpdatedAt      *time.Time `gorm:"not null;autoCreateTime" json:"updated_at,omitempty"`
-	User           *User      `gorm:"foreignKey:UserID;constraint:onUpdate:CASCADE,onDelete:CASCADE" json:"user"`
+	// Deleted        gorm.DeletedAt `gorm:"not null;autoCreateTime" json:"deleted_at,omitempty"`
+	Deleted gorm.DeletedAt `json:"deleted_at,omitempty"`
+	User    *User          `gorm:"foreignKey:UserID;constraint:onUpdate:CASCADE,onDelete:CASCADE" json:"user"`
 }
 
 func (s *SocialMedia) BeforeCreate(db *gorm.DB) (err error) {

@@ -56,7 +56,7 @@ func (userRepository *userRepository) GetAllUsers(ctx context.Context, users *[]
 	defer cancel()
 
 	if err = userRepository.db.WithContext(ctx).
-		Select("id", "username", "email", "age", "profile_image_url").Find(&users).Error; err != nil {
+		Select("id", "username", "email", "age").Find(&users).Error; err != nil {
 		return err
 	}
 
@@ -81,7 +81,7 @@ func (userRepository *userRepository) Update(ctx context.Context, user domain.Us
 	return u, nil
 }
 
-func (userRepository *userRepository) Delete(ctx context.Context, id string) (err error) {
+func (userRepository *userRepository) SoftDelete(ctx context.Context, id string) (err error) {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 
 	defer cancel()
