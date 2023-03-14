@@ -1,6 +1,8 @@
 package utils
 
-import "time"
+import (
+	"time"
+)
 
 type RegisterUser struct {
 	Age      uint   `json:"age" example:"8"`
@@ -34,6 +36,19 @@ type LoggedinUser struct {
 type ResponseDataLoggedinUser struct {
 	Status string       `json:"status" example:"success"`
 	Data   LoggedinUser `json:"data"`
+}
+
+type Users struct {
+	Users []Users `json:"users"`
+}
+
+type FetchedUsers struct {
+	Users interface{} `json:"users"`
+}
+
+type ResponseGetAllUsers struct {
+	Status string `json:"status" example:"success"`
+	Data   Users  `json:"data"`
 }
 
 type UpdateUser struct {

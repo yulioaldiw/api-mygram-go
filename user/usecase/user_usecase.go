@@ -43,6 +43,14 @@ func (userUseCase *userUseCase) Login(ctx context.Context, user *domain.User) (e
 	return
 }
 
+func (userUseCase *userUseCase) GetAllUsers(ctx context.Context, users *[]domain.User) (err error) {
+	if err = userUseCase.userRepository.GetAllUsers(ctx, users); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (userUseCase *userUseCase) Update(ctx context.Context, user domain.User) (u domain.User, err error) {
 	if u, err = userUseCase.userRepository.Update(ctx, user); err != nil {
 		return u, err

@@ -30,7 +30,7 @@ func NewSocialMediaHandler(routers *gin.Engine, socialMediaUseCase domain.Social
 
 // Fetch godoc
 // @Summary    	Fetch all social media
-// @Description	Get all social media with authentication user
+// @Description	Get all social media with authenticated user
 // @Tags        socialmedias
 // @Accept      json
 // @Produce     json

@@ -44,13 +44,13 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_comment_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_comment_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_comment_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_comment_utils.ResponseMessage"
                         }
                     }
                 }
@@ -93,13 +93,13 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_comment_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_comment_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_comment_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_comment_utils.ResponseMessage"
                         }
                     }
                 }
@@ -151,19 +151,19 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_comment_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_comment_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_comment_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_comment_utils.ResponseMessage"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_comment_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_comment_utils.ResponseMessage"
                         }
                     }
                 }
@@ -204,19 +204,19 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_comment_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_comment_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_comment_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_comment_utils.ResponseMessage"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_comment_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_comment_utils.ResponseMessage"
                         }
                     }
                 }
@@ -250,13 +250,13 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_photo_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_photo_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_photo_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_photo_utils.ResponseMessage"
                         }
                     }
                 }
@@ -299,13 +299,13 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_photo_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_photo_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_photo_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_photo_utils.ResponseMessage"
                         }
                     }
                 }
@@ -357,19 +357,19 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_photo_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_photo_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_photo_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_photo_utils.ResponseMessage"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_photo_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_photo_utils.ResponseMessage"
                         }
                     }
                 }
@@ -410,19 +410,19 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_photo_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_photo_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_photo_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_photo_utils.ResponseMessage"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_photo_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_photo_utils.ResponseMessage"
                         }
                     }
                 }
@@ -435,7 +435,7 @@
                         "Bearer": []
                     }
                 ],
-                "description": "Get all social media with authentication user",
+                "description": "Get all social media with authenticated user",
                 "consumes": [
                     "application/json"
                 ],
@@ -456,13 +456,13 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_socialmedia_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_socialmedia_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage"
                         }
                     }
                 }
@@ -505,13 +505,13 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_socialmedia_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_socialmedia_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage"
                         }
                     }
                 }
@@ -563,19 +563,19 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_socialmedia_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_socialmedia_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_socialmedia_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage"
                         }
                     }
                 }
@@ -616,25 +616,63 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_socialmedia_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_socialmedia_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_socialmedia_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage"
                         }
                     }
                 }
             }
         },
         "/users": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get all users data with authenticated user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get all users",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/utils.ResponseGetAllUsers"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/api-mygram-go_user_utils.ResponseMessage"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/api-mygram-go_user_utils.ResponseMessage"
+                        }
+                    }
+                }
+            },
             "put": {
                 "security": [
                     {
@@ -673,19 +711,19 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_user_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_user_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_user_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_user_utils.ResponseMessage"
                         }
                     },
                     "409": {
                         "description": "Conflict",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_user_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_user_utils.ResponseMessage"
                         }
                     }
                 }
@@ -717,19 +755,19 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_user_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_user_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_user_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_user_utils.ResponseMessage"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_user_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_user_utils.ResponseMessage"
                         }
                     }
                 }
@@ -769,13 +807,13 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_user_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_user_utils.ResponseMessage"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_user_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_user_utils.ResponseMessage"
                         }
                     }
                 }
@@ -815,13 +853,13 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_user_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_user_utils.ResponseMessage"
                         }
                     },
                     "409": {
                         "description": "Conflict",
                         "schema": {
-                            "$ref": "#/definitions/mygram-api_user_utils.ResponseMessage"
+                            "$ref": "#/definitions/api-mygram-go_user_utils.ResponseMessage"
                         }
                     }
                 }
@@ -829,7 +867,7 @@
         }
     },
     "definitions": {
-        "mygram-api_comment_utils.ResponseMessage": {
+        "api-mygram-go_comment_utils.ResponseMessage": {
             "type": "object",
             "properties": {
                 "data": {
@@ -842,7 +880,21 @@
                 }
             }
         },
-        "mygram-api_photo_utils.ResponseMessage": {
+        "api-mygram-go_comment_utils.User": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "api-mygram-go_photo_utils.ResponseMessage": {
             "type": "object",
             "properties": {
                 "data": {
@@ -855,7 +907,18 @@
                 }
             }
         },
-        "mygram-api_socialmedia_utils.ResponseMessage": {
+        "api-mygram-go_photo_utils.User": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "api-mygram-go_socialmedia_utils.ResponseMessage": {
             "type": "object",
             "properties": {
                 "data": {
@@ -868,7 +931,24 @@
                 }
             }
         },
-        "mygram-api_user_utils.ResponseMessage": {
+        "api-mygram-go_socialmedia_utils.User": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "johndoe@example.com"
+                },
+                "id": {
+                    "type": "string",
+                    "example": "here is the generated user id"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "johndoe"
+                }
+            }
+        },
+        "api-mygram-go_user_utils.ResponseMessage": {
             "type": "object",
             "properties": {
                 "data": {
@@ -1019,7 +1099,7 @@
                     "type": "string"
                 },
                 "user": {
-                    "$ref": "#/definitions/utils.User"
+                    "$ref": "#/definitions/api-mygram-go_comment_utils.User"
                 },
                 "user_id": {
                     "type": "string"
@@ -1048,7 +1128,7 @@
                     "type": "string"
                 },
                 "user": {
-                    "$ref": "#/definitions/utils.User"
+                    "$ref": "#/definitions/api-mygram-go_photo_utils.User"
                 },
                 "user_id": {
                     "type": "string"
@@ -1061,6 +1141,10 @@
                 "token": {
                     "type": "string",
                     "example": "the token generated here"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "johndoe"
                 }
             }
         },
@@ -1289,6 +1373,18 @@
                 }
             }
         },
+        "utils.ResponseGetAllUsers": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/utils.Users"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        },
         "utils.ResponseMessageDeletedComment": {
             "type": "object",
             "properties": {
@@ -1365,7 +1461,7 @@
                     "example": "here is the generated updated at"
                 },
                 "user": {
-                    "$ref": "#/definitions/utils.User"
+                    "$ref": "#/definitions/api-mygram-go_socialmedia_utils.User"
                 },
                 "user_id": {
                     "type": "string",
@@ -1532,26 +1628,21 @@
                 }
             }
         },
-        "utils.User": {
+        "utils.Users": {
             "type": "object",
             "properties": {
-                "email": {
-                    "type": "string",
-                    "example": "johndoe@example.com"
-                },
-                "id": {
-                    "type": "string",
-                    "example": "here is the generated user id"
-                },
-                "username": {
-                    "type": "string",
-                    "example": "johndoe"
+                "users": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/utils.Users"
+                    }
                 }
             }
         }
     },
     "securityDefinitions": {
         "Bearer": {
+            "description": "Description for what is this security definition being used",
             "type": "apiKey",
             "name": "Authorization",
             "in": "header"

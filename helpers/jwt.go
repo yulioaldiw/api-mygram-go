@@ -4,7 +4,6 @@ import (
 	"errors"
 	"log"
 	"os"
-	_ "strings"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -33,32 +32,6 @@ func GenerateToken(id string, email string) string {
 
 func VerifyToken(ctx *gin.Context) (interface{}, error) {
 	errResponse := errors.New("sign in to proceed")
-	// headerToken := ctx.Request.Header.Get("Authorization")
-	// bearer := strings.HasPrefix(headerToken, "Bearer")
-
-	// if !bearer {
-	// 	return nil, errResponse
-	// }
-
-	// stringToken := strings.Split(headerToken, " ")[1]
-
-	// if err := godotenv.Load("../api-mygram-go/config/env/.env"); err != nil {
-	// 	log.Fatal("Error loading .env file: ", err)
-	// }
-
-	// token, _ := jwt.Parse(stringToken, func(token *jwt.Token) (interface{}, error) {
-	// 	if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-	// 		return nil, errResponse
-	// 	}
-
-	// 	return []byte(os.Getenv("TOKEN_KEY")), nil
-	// })
-
-	// if _, ok := token.Claims.(jwt.MapClaims); !ok && !token.Valid {
-	// 	return nil, errResponse
-	// }
-
-	// return token.Claims.(jwt.MapClaims), nil
 
 	if err := godotenv.Load("../api-mygram-go/config/env/.env"); err != nil {
 		log.Fatal("Error loading .env file: ", err)

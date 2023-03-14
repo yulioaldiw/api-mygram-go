@@ -86,7 +86,11 @@ func main() {
 
 	socialMediaDelivery.NewSocialMediaHandler(routers, socialMediaUseCase)
 
-	routers.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	// routers.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	url := ginSwagger.URL("http://localhost:8080/swagger/doc.json")
+	routers.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
+	// routers.GET("/swagger/", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 
 	if err := godotenv.Load("../api-mygram-go/config/env/.env"); err != nil {
 		log.Fatal("Error loading .env file: ", err)

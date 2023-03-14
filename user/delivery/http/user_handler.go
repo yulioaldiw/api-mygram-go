@@ -24,6 +24,7 @@ func NewUserHandler(routers *gin.Engine, userUseCase domain.UserUseCase) {
 	{
 		router.POST("/register", handler.Register)
 		router.POST("/login", handler.Login)
+		router.GET("", middleware.Authentication(), handler.GetAllUsers)
 		router.PUT("", middleware.Authentication(), handler.Update)
 		router.DELETE("", middleware.Authentication(), handler.Delete)
 	}
@@ -155,6 +156,40 @@ func (handler *userHandler) Login(ctx *gin.Context) {
 		Data: utils.LoggedinUser{
 			Username: user.Email,
 			Token:    token,
+		},
+	})
+}
+
+// Get Users godoc
+// @Summary			Get all users
+// @Description		Get all users data with authenticated user
+// @Tags			users
+// @Accept			json
+// @Produce			json
+// @Success			200		{object}	utils.ResponseGetAllUsers
+// @Failure			400		{object}	utils.ResponseMessage
+// @Failure			401		{object}	utils.ResponseMessage
+// @Security    	Bearer
+// @Router			/users	[get]
+func (handler *userHandler) GetAllUsers(ctx *gin.Context) {
+	var (
+		users []domain.User
+		err   error
+	)
+
+	if err = handler.userUseCase.GetAllUsers(ctx.Request.Context(), &users); err != nil {
+		ctx.AbortWithStatusJSON(http.StatusNotFound, helpers.ResponseMessage{
+			Status:  "fail",
+			Message: err.Error(),
+		})
+
+		return
+	}
+
+	ctx.JSON(http.StatusOK, helpers.ResponseData{
+		Status: "success",
+		Data: utils.FetchedUsers{
+			Users: users,
 		},
 	})
 }

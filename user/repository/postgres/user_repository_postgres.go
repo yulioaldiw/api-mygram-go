@@ -39,6 +39,24 @@ func (userRepository *userRepository) GetUserByEmail(ctx context.Context, user *
 	return
 }
 
+func (userRepository *userRepository) GetAllUsers(ctx context.Context, users *[]domain.User) (err error) {
+	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
+
+	defer cancel()
+
+	if err = userRepository.db.WithContext(ctx).Find(&users).
+		Select("id").
+		Select("username").
+		Select("email").
+		Select("age").
+		Select("profile_image_url").
+		Error; err != nil {
+		return err
+	}
+
+	return
+}
+
 func (userRepository *userRepository) Update(ctx context.Context, user domain.User) (u domain.User, err error) {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 

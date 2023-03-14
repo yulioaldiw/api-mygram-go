@@ -1,6 +1,6 @@
 basePath: /
 definitions:
-  mygram-api_comment_utils.ResponseMessage:
+  api-mygram-go_comment_utils.ResponseMessage:
     properties:
       data:
         example: the error explained here
@@ -9,7 +9,16 @@ definitions:
         example: fail
         type: string
     type: object
-  mygram-api_photo_utils.ResponseMessage:
+  api-mygram-go_comment_utils.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      username:
+        type: string
+    type: object
+  api-mygram-go_photo_utils.ResponseMessage:
     properties:
       data:
         example: the error explained here
@@ -18,7 +27,14 @@ definitions:
         example: fail
         type: string
     type: object
-  mygram-api_socialmedia_utils.ResponseMessage:
+  api-mygram-go_photo_utils.User:
+    properties:
+      email:
+        type: string
+      username:
+        type: string
+    type: object
+  api-mygram-go_socialmedia_utils.ResponseMessage:
     properties:
       data:
         example: the error explained here
@@ -27,7 +43,19 @@ definitions:
         example: fail
         type: string
     type: object
-  mygram-api_user_utils.ResponseMessage:
+  api-mygram-go_socialmedia_utils.User:
+    properties:
+      email:
+        example: johndoe@example.com
+        type: string
+      id:
+        example: here is the generated user id
+        type: string
+      username:
+        example: johndoe
+        type: string
+    type: object
+  api-mygram-go_user_utils.ResponseMessage:
     properties:
       data:
         example: the error explained here
@@ -132,7 +160,7 @@ definitions:
       updated_at:
         type: string
       user:
-        $ref: '#/definitions/utils.User'
+        $ref: '#/definitions/api-mygram-go_comment_utils.User'
       user_id:
         type: string
     type: object
@@ -151,7 +179,7 @@ definitions:
       updated_at:
         type: string
       user:
-        $ref: '#/definitions/utils.User'
+        $ref: '#/definitions/api-mygram-go_photo_utils.User'
       user_id:
         type: string
     type: object
@@ -159,6 +187,9 @@ definitions:
     properties:
       token:
         example: the token generated here
+        type: string
+      username:
+        example: johndoe
         type: string
     type: object
   utils.LoginUser:
@@ -313,6 +344,14 @@ definitions:
         example: success
         type: string
     type: object
+  utils.ResponseGetAllUsers:
+    properties:
+      data:
+        $ref: '#/definitions/utils.Users'
+      status:
+        example: success
+        type: string
+    type: object
   utils.ResponseMessageDeletedComment:
     properties:
       message:
@@ -367,7 +406,7 @@ definitions:
         example: here is the generated updated at
         type: string
       user:
-        $ref: '#/definitions/utils.User'
+        $ref: '#/definitions/api-mygram-go_socialmedia_utils.User'
       user_id:
         example: here is the generated user id
         type: string
@@ -481,17 +520,12 @@ definitions:
         example: newjohndoe
         type: string
     type: object
-  utils.User:
+  utils.Users:
     properties:
-      email:
-        example: johndoe@example.com
-        type: string
-      id:
-        example: here is the generated user id
-        type: string
-      username:
-        example: johndoe
-        type: string
+      users:
+        items:
+          $ref: '#/definitions/utils.Users'
+        type: array
     type: object
 host: localhost:8080
 info:
@@ -522,11 +556,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_comment_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_comment_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_comment_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_comment_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Fetch all comments
@@ -553,11 +587,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_comment_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_comment_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_comment_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_comment_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Add a comment
@@ -584,15 +618,15 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_comment_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_comment_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_comment_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_comment_utils.ResponseMessage'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/mygram-api_comment_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_comment_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Delete a comment
@@ -624,15 +658,15 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_comment_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_comment_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_comment_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_comment_utils.ResponseMessage'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/mygram-api_comment_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_comment_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Update a comment
@@ -653,11 +687,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_photo_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_photo_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_photo_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_photo_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Fetch all photos
@@ -684,11 +718,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_photo_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_photo_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_photo_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_photo_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Store a photo
@@ -715,15 +749,15 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_photo_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_photo_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_photo_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_photo_utils.ResponseMessage'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/mygram-api_photo_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_photo_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Delete a photo
@@ -755,15 +789,15 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_photo_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_photo_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_photo_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_photo_utils.ResponseMessage'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/mygram-api_photo_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_photo_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Update a photo
@@ -773,7 +807,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: Get all social media with authentication user
+      description: Get all social media with authenticated user
       produces:
       - application/json
       responses:
@@ -784,11 +818,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_socialmedia_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_socialmedia_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Fetch all social media
@@ -815,11 +849,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_socialmedia_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_socialmedia_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Add a social media
@@ -846,15 +880,15 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_socialmedia_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_socialmedia_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/mygram-api_socialmedia_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Delete a social media
@@ -886,15 +920,15 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_socialmedia_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_socialmedia_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/mygram-api_socialmedia_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_socialmedia_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Update a social media
@@ -915,18 +949,42 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_user_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_user_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_user_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_user_utils.ResponseMessage'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/mygram-api_user_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_user_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Delete a user
+      tags:
+      - users
+    get:
+      consumes:
+      - application/json
+      description: Get all users data with authenticated user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.ResponseGetAllUsers'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api-mygram-go_user_utils.ResponseMessage'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/api-mygram-go_user_utils.ResponseMessage'
+      security:
+      - Bearer: []
+      summary: Get all users
       tags:
       - users
     put:
@@ -950,15 +1008,15 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_user_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_user_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_user_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_user_utils.ResponseMessage'
         "409":
           description: Conflict
           schema:
-            $ref: '#/definitions/mygram-api_user_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_user_utils.ResponseMessage'
       security:
       - Bearer: []
       summary: Update a user
@@ -986,11 +1044,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_user_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_user_utils.ResponseMessage'
         "401":
           description: Unauthorized
           schema:
-            $ref: '#/definitions/mygram-api_user_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_user_utils.ResponseMessage'
       summary: Login a user
       tags:
       - users
@@ -1016,16 +1074,17 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/mygram-api_user_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_user_utils.ResponseMessage'
         "409":
           description: Conflict
           schema:
-            $ref: '#/definitions/mygram-api_user_utils.ResponseMessage'
+            $ref: '#/definitions/api-mygram-go_user_utils.ResponseMessage'
       summary: Register a user
       tags:
       - users
 securityDefinitions:
   Bearer:
+    description: Description for what is this security definition being used
     in: header
     name: Authorization
     type: apiKey
