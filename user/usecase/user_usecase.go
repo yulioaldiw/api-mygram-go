@@ -36,6 +36,7 @@ func (userUseCase *userUseCase) Login(ctx context.Context, user *domain.User) (e
 	if err = userUseCase.userRepository.GetUserByEmail(ctx, user); err != nil {
 		return err
 	}
+
 	if isValid := helpers.Compare([]byte(user.Password), []byte(password)); !isValid {
 		return errors.New("the credential you entered are wrong")
 	}
@@ -51,8 +52,8 @@ func (userUseCase *userUseCase) GetAllUsers(ctx context.Context, users *[]domain
 	return nil
 }
 
-func (userUseCase *userUseCase) Update(ctx context.Context, user domain.User) (u domain.User, err error) {
-	if u, err = userUseCase.userRepository.Update(ctx, user); err != nil {
+func (userUseCase *userUseCase) Update(ctx context.Context, user domain.User, userID string) (u domain.User, err error) {
+	if u, err = userUseCase.userRepository.Update(ctx, user, userID); err != nil {
 		return u, err
 	}
 

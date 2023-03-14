@@ -44,14 +44,15 @@ type UserUseCase interface {
 	Register(context.Context, *User) error
 	Login(context.Context, *User) error
 	GetAllUsers(context.Context, *[]User) error
-	Update(context.Context, User) (User, error)
+	Update(context.Context, User, string) (User, error)
 	Delete(context.Context, string) error
 }
 
 type UserRepository interface {
 	Create(context.Context, *User) error
 	GetUserByEmail(context.Context, *User) error
+	GetUserByID(context.Context, *User) error
 	GetAllUsers(context.Context, *[]User) error
-	Update(context.Context, User) (User, error)
+	Update(context.Context, User, string) (User, error)
 	Delete(context.Context, string) error
 }

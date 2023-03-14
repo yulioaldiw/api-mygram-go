@@ -39,32 +39,38 @@ func (userRepository *userRepository) GetUserByEmail(ctx context.Context, user *
 	return
 }
 
+func (userRepository *userRepository) GetUserByID(ctx context.Context, user *domain.User) (err error) {
+	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
+	defer cancel()
+
+	if err = userRepository.db.WithContext(ctx).Where("id = ?", user.ID).Take(&user).Error; err != nil {
+		return errors.New("the id you entered are not registered")
+	}
+
+	return
+}
+
 func (userRepository *userRepository) GetAllUsers(ctx context.Context, users *[]domain.User) (err error) {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 
 	defer cancel()
 
-	if err = userRepository.db.WithContext(ctx).Find(&users).
-		Select("id").
-		Select("username").
-		Select("email").
-		Select("age").
-		Select("profile_image_url").
-		Error; err != nil {
+	if err = userRepository.db.WithContext(ctx).
+		Select("id", "username", "email", "age", "profile_image_url").Find(&users).Error; err != nil {
 		return err
 	}
 
 	return
 }
 
-func (userRepository *userRepository) Update(ctx context.Context, user domain.User) (u domain.User, err error) {
+func (userRepository *userRepository) Update(ctx context.Context, user domain.User, userID string) (u domain.User, err error) {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 
 	defer cancel()
 
 	u = domain.User{}
 
-	if err = userRepository.db.WithContext(ctx).First(&u).Error; err != nil {
+	if err = userRepository.db.WithContext(ctx).First(&u, "id = ?", userID).Error; err != nil {
 		return u, err
 	}
 

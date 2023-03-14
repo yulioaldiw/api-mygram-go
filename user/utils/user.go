@@ -12,10 +12,10 @@ type RegisterUser struct {
 }
 
 type RegisteredUser struct {
-	Age      uint   `json:"age" example:"8"`
-	Email    string `json:"email" example:"johndoe@example.com"`
 	ID       string `json:"id" example:"the user id generated here"`
+	Email    string `json:"email" example:"johndoe@example.com"`
 	Username string `json:"username" example:"johndoe"`
+	Age      uint   `json:"age" example:"8"`
 }
 
 type ResponseDataRegisteredUser struct {
@@ -39,7 +39,10 @@ type ResponseDataLoggedinUser struct {
 }
 
 type Users struct {
-	Users []Users `json:"users"`
+	ID       string `json:"id" example:"the user id generated here"`
+	Email    string `json:"email" example:"johndoe@example.com"`
+	Username string `json:"username" example:"johndoe"`
+	Age      uint   `json:"age" example:"8"`
 }
 
 type FetchedUsers struct {

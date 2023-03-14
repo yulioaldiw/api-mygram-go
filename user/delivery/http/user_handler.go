@@ -189,6 +189,7 @@ func (handler *userHandler) GetAllUsers(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, helpers.ResponseData{
 		Status: "success",
 		Data: utils.FetchedUsers{
+			// Users: users,
 			Users: users,
 		},
 	})
@@ -196,12 +197,12 @@ func (handler *userHandler) GetAllUsers(ctx *gin.Context) {
 
 // Update godoc
 // @Summary			Update a user
-// @Description	Update a user with authentication user
-// @Tags				users
+// @Description		Update a user with authentication user
+// @Tags			users
 // @Accept			json
 // @Produce			json
-// @Param				json		body			utils.UpdateUser   true  "Update User"
-// @Success			200			{object}  utils.ResponseDataUpdatedUser
+// @Param			json		body		utils.UpdateUser   true  "Update User"
+// @Success			200			{object}  	utils.ResponseDataUpdatedUser
 // @Failure			400			{object}	utils.ResponseMessage
 // @Failure			401			{object}	utils.ResponseMessage
 // @Failure			409			{object}	utils.ResponseMessage
@@ -214,7 +215,7 @@ func (handler *userHandler) Update(ctx *gin.Context) {
 	)
 
 	userData := ctx.MustGet("userData").(jwt.MapClaims)
-	_ = string(userData["id"].(string))
+	userID := string(userData["id"].(string))
 
 	if err = ctx.ShouldBindJSON(&user); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, helpers.ResponseMessage{
@@ -226,11 +227,13 @@ func (handler *userHandler) Update(ctx *gin.Context) {
 	}
 
 	updatedUser := domain.User{
-		Username: user.Username,
-		Email:    user.Email,
+		Username:        user.Username,
+		Email:           user.Email,
+		Age:             user.Age,
+		ProfileImageUrl: user.ProfileImageUrl,
 	}
 
-	if user, err = handler.userUseCase.Update(ctx.Request.Context(), updatedUser); err != nil {
+	if user, err = handler.userUseCase.Update(ctx.Request.Context(), updatedUser, userID); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, helpers.ResponseMessage{
 			Status:  "fail",
 			Message: err.Error(),
